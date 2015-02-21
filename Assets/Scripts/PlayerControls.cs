@@ -12,6 +12,7 @@ public class PlayerControls : MonoBehaviour
 	private float timeUntilFire = 0f;
 	private Transform leftTurret;
 	private Transform rightTurret;
+	private ParticleSystem thruster;
 
 	void Awake()
 	{
@@ -22,7 +23,7 @@ public class PlayerControls : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-	
+		thruster = gameObject.GetComponentInChildren<ParticleSystem> ();
 	}
 	
 	// Update is called once per frame
@@ -43,6 +44,7 @@ public class PlayerControls : MonoBehaviour
 	private void captureForwardInput()
 	{
 		float verticalInput = Mathf.Max (0,Input.GetAxis("Vertical"));
+		thruster.enableEmission = verticalInput > 0;
 		this.rigidbody2D.AddForce(verticalInput*this.transform.up.normalized*acceleration*Time.deltaTime);
 	}
 
