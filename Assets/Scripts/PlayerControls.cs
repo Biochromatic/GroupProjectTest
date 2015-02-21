@@ -37,25 +37,18 @@ public class PlayerControls : MonoBehaviour
 
 	private void captureAngularInput()
 	{
-		if (Input.GetKey(KeyCode.RightArrow))
-			this.rigidbody2D.angularVelocity = -rotateSpeed;
-		else if (Input.GetKey(KeyCode.LeftArrow))
-			this.rigidbody2D.angularVelocity = rotateSpeed;
-		else
-			this.rigidbody2D.angularVelocity = 0f;
+		this.rigidbody2D.angularVelocity = -Input.GetAxis("Horizontal") * rotateSpeed;
 	}
 
 	private void captureForwardInput()
 	{
-		if (Input.GetKey(KeyCode.UpArrow))
-		{
-			this.rigidbody2D.AddForce(this.transform.up.normalized*acceleration*Time.deltaTime);
-		}
+		float verticalInput = Mathf.Max (0,Input.GetAxis("Vertical"));
+		this.rigidbody2D.AddForce(verticalInput*this.transform.up.normalized*acceleration*Time.deltaTime);
 	}
 
 	private void captureAttackInput()
 	{
-		if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Space)) && timeUntilFire <= 0f)
+		if (Input.GetButton ("Fire1") && timeUntilFire <= 0f)
 		{
 			timeUntilFire = shotCooldownTime;
 			GameObject leftLaser = Instantiate(laserPrefab, leftTurret.position, this.transform.rotation) as GameObject;
