@@ -62,3 +62,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+Assembly-CSharp-vs.csproj
+Assembly-CSharp-vs.csproj
+Library/assetDatabase3
+Library/assetDatabase3
