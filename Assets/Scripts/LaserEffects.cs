@@ -7,7 +7,7 @@ public class LaserEffects : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.rigidbody2D.velocity = this.transform.up.normalized*absoluteMoveSpeed;
+		this.GetComponent<Rigidbody2D>().velocity = this.transform.up.normalized*absoluteMoveSpeed;
 	}
 	
 	// Update is called once per frame

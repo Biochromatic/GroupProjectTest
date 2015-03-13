@@ -38,14 +38,14 @@ public class PlayerControls : MonoBehaviour
 
 	private void captureAngularInput()
 	{
-		this.rigidbody2D.angularVelocity = -Input.GetAxis("Horizontal") * rotateSpeed;
+		this.GetComponent<Rigidbody2D>().angularVelocity = -Input.GetAxis("Horizontal") * rotateSpeed;
 	}
 
 	private void captureForwardInput()
 	{
 		float verticalInput = Mathf.Max (0,Input.GetAxis("Vertical"));
 		thruster.enableEmission = verticalInput > 0;
-		this.rigidbody2D.AddForce(verticalInput*this.transform.up.normalized*acceleration*Time.deltaTime);
+		this.GetComponent<Rigidbody2D>().AddForce(verticalInput*this.transform.up.normalized*acceleration*Time.deltaTime);
 	}
 
 	private void captureAttackInput()
